@@ -3,8 +3,8 @@ package infra.repository
 import core.model.user.UserProfile
 import core.model.user.UserType
 import core.repository.UserRepository
-import infra.db.UserEntity
-import infra.db.UsersTable
+import infra.db.user.UserEntity
+import infra.db.user.UsersTable
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import java.time.LocalDateTime

@@ -3,7 +3,7 @@ package com.assetguard.domain.usecase
 import core.model.user.UserProfile
 import core.model.user.UserType
 import core.repository.UserRepository
-import core.usecase.RegisterUserUseCase
+import core.usecase.user.RegisterUserUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

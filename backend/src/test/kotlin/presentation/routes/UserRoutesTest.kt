@@ -4,9 +4,9 @@ package presentation.routes
 
 import core.model.user.UserProfile
 import core.model.user.UserType
-import core.usecase.GetProfileUseCase
-import core.usecase.RegisterUserUseCase
-import core.usecase.UpdateUserTypeUseCase
+import core.usecase.user.GetProfileUseCase
+import core.usecase.user.RegisterUserUseCase
+import core.usecase.user.UpdateUserTypeUseCase
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*

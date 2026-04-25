@@ -3,7 +3,7 @@ package com.assetguard.domain.usecase
 import core.model.user.UserProfile
 import core.model.user.UserType
 import core.repository.UserRepository
-import core.usecase.UpdateUserTypeUseCase
+import core.usecase.user.UpdateUserTypeUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

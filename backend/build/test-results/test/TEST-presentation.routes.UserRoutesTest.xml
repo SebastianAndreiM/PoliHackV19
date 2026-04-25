@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="presentation.routes.UserRoutesTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-04-25T14:55:22.642Z" hostname="DESKTOP-TMATNDQ" time="0.297">
+<testsuite name="presentation.routes.UserRoutesTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-04-25T17:23:44.591Z" hostname="DESKTOP-TMATNDQ" time="0.207">
   <properties/>
-  <testcase name="PATCH type returns 400 when user not found" classname="presentation.routes.UserRoutesTest" time="0.168"/>
-  <testcase name="PATCH type returns 200 with updated userType" classname="presentation.routes.UserRoutesTest" time="0.036"/>
-  <testcase name="GET profile returns 200 when user exists" classname="presentation.routes.UserRoutesTest" time="0.016"/>
-  <testcase name="POST register is idempotent for existing user" classname="presentation.routes.UserRoutesTest" time="0.023"/>
-  <testcase name="PATCH type returns 400 for invalid userType" classname="presentation.routes.UserRoutesTest" time="0.012"/>
+  <testcase name="PATCH type returns 400 when user not found" classname="presentation.routes.UserRoutesTest" time="0.104"/>
+  <testcase name="PATCH type returns 200 with updated userType" classname="presentation.routes.UserRoutesTest" time="0.022"/>
+  <testcase name="GET profile returns 200 when user exists" classname="presentation.routes.UserRoutesTest" time="0.013"/>
+  <testcase name="POST register is idempotent for existing user" classname="presentation.routes.UserRoutesTest" time="0.017"/>
+  <testcase name="PATCH type returns 400 for invalid userType" classname="presentation.routes.UserRoutesTest" time="0.009"/>
   <testcase name="PATCH type returns 200 for STUDENT" classname="presentation.routes.UserRoutesTest" time="0.013"/>
   <testcase name="POST register returns 201 with profile" classname="presentation.routes.UserRoutesTest" time="0.013"/>
-  <testcase name="GET profile returns 404 when user not found" classname="presentation.routes.UserRoutesTest" time="0.016"/>
-  <system-out><![CDATA[2026-04-25 17:55:22.740 [DefaultDispatcher-worker-6 @call-context#49] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.755 [DefaultDispatcher-worker-6 @call-context#49] INFO  io.ktor.test - Application started in 0.017 seconds.
-2026-04-25 17:55:22.756 [DefaultDispatcher-worker-1 @coroutine#51] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.756 [DefaultDispatcher-worker-1 @coroutine#51] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.818 [DefaultDispatcher-worker-9 @call-context#63] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.819 [DefaultDispatcher-worker-9 @call-context#63] INFO  io.ktor.test - Application started in 0.001 seconds.
-2026-04-25 17:55:22.820 [DefaultDispatcher-worker-6 @coroutine#65] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.820 [DefaultDispatcher-worker-6 @coroutine#65] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.854 [DefaultDispatcher-worker-2 @call-context#77] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.856 [DefaultDispatcher-worker-2 @call-context#77] INFO  io.ktor.test - Application started in 0.002 seconds.
-2026-04-25 17:55:22.856 [DefaultDispatcher-worker-3 @coroutine#79] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.856 [DefaultDispatcher-worker-3 @coroutine#79] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.871 [DefaultDispatcher-worker-3 @call-context#91] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.872 [DefaultDispatcher-worker-3 @call-context#91] INFO  io.ktor.test - Application started in 0.001 seconds.
-2026-04-25 17:55:22.872 [DefaultDispatcher-worker-4 @coroutine#93] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.872 [DefaultDispatcher-worker-4 @coroutine#93] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.890 [DefaultDispatcher-worker-1 @call-context#107] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.891 [DefaultDispatcher-worker-1 @call-context#107] INFO  io.ktor.test - Application started in 0.001 seconds.
-2026-04-25 17:55:22.892 [DefaultDispatcher-worker-7 @coroutine#109] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.892 [DefaultDispatcher-worker-7 @coroutine#109] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.902 [DefaultDispatcher-worker-1 @call-context#121] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.904 [DefaultDispatcher-worker-1 @call-context#121] INFO  io.ktor.test - Application started in 0.002 seconds.
-2026-04-25 17:55:22.905 [DefaultDispatcher-worker-14 @coroutine#123] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.905 [DefaultDispatcher-worker-14 @coroutine#123] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.917 [DefaultDispatcher-worker-5 @call-context#135] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.918 [DefaultDispatcher-worker-5 @call-context#135] INFO  io.ktor.test - Application started in 0.002 seconds.
-2026-04-25 17:55:22.918 [DefaultDispatcher-worker-17 @coroutine#137] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.918 [DefaultDispatcher-worker-17 @coroutine#137] INFO  io.ktor.test - Responding at https://localhost:443
-2026-04-25 17:55:22.928 [DefaultDispatcher-worker-13 @call-context#149] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 17:55:22.930 [DefaultDispatcher-worker-13 @call-context#149] INFO  io.ktor.test - Application started in 0.002 seconds.
-2026-04-25 17:55:22.930 [DefaultDispatcher-worker-2 @coroutine#151] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 17:55:22.930 [DefaultDispatcher-worker-2 @coroutine#151] INFO  io.ktor.test - Responding at https://localhost:443
+  <testcase name="GET profile returns 404 when user not found" classname="presentation.routes.UserRoutesTest" time="0.015"/>
+  <system-out><![CDATA[2026-04-25 20:23:44.661 [DefaultDispatcher-worker-6 @call-context#161] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.666 [DefaultDispatcher-worker-6 @call-context#161] INFO  io.ktor.test - Application started in 0.006 seconds.
+2026-04-25 20:23:44.667 [DefaultDispatcher-worker-1 @coroutine#163] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.667 [DefaultDispatcher-worker-1 @coroutine#163] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.704 [DefaultDispatcher-worker-9 @call-context#175] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.705 [DefaultDispatcher-worker-9 @call-context#175] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-25 20:23:44.705 [DefaultDispatcher-worker-11 @coroutine#177] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.706 [DefaultDispatcher-worker-11 @coroutine#177] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.724 [DefaultDispatcher-worker-9 @call-context#189] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.725 [DefaultDispatcher-worker-9 @call-context#189] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 20:23:44.726 [DefaultDispatcher-worker-10 @coroutine#191] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.726 [DefaultDispatcher-worker-10 @coroutine#191] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.738 [DefaultDispatcher-worker-2 @call-context#203] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.739 [DefaultDispatcher-worker-2 @call-context#203] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 20:23:44.739 [DefaultDispatcher-worker-3 @coroutine#205] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.739 [DefaultDispatcher-worker-3 @coroutine#205] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.751 [DefaultDispatcher-worker-2 @call-context#219] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.752 [DefaultDispatcher-worker-2 @call-context#219] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 20:23:44.753 [DefaultDispatcher-worker-4 @coroutine#221] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.753 [DefaultDispatcher-worker-4 @coroutine#221] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.764 [DefaultDispatcher-worker-1 @call-context#233] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.765 [DefaultDispatcher-worker-1 @call-context#233] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 20:23:44.766 [DefaultDispatcher-worker-11 @coroutine#235] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.766 [DefaultDispatcher-worker-11 @coroutine#235] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.777 [DefaultDispatcher-worker-4 @call-context#247] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.778 [DefaultDispatcher-worker-4 @call-context#247] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 20:23:44.778 [DefaultDispatcher-worker-10 @coroutine#249] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.778 [DefaultDispatcher-worker-10 @coroutine#249] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 20:23:44.789 [DefaultDispatcher-worker-4 @call-context#261] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 20:23:44.791 [DefaultDispatcher-worker-4 @call-context#261] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-25 20:23:44.791 [DefaultDispatcher-worker-1 @coroutine#263] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 20:23:44.791 [DefaultDispatcher-worker-1 @coroutine#263] INFO  io.ktor.test - Responding at https://localhost:443
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

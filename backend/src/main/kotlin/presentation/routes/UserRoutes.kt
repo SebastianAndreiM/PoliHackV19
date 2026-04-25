@@ -1,9 +1,9 @@
 package presentation.routes
 
 import core.model.user.UserType
-import core.usecase.GetProfileUseCase
-import core.usecase.RegisterUserUseCase
-import core.usecase.UpdateUserTypeUseCase
+import core.usecase.user.GetProfileUseCase
+import core.usecase.user.RegisterUserUseCase
+import core.usecase.user.UpdateUserTypeUseCase
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
@@ -12,8 +12,8 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.patch
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
-import presentation.dto.RegisterRequest
-import presentation.dto.UpdateUserTypeRequest
+import presentation.dto.user.RegisterRequest
+import presentation.dto.user.UpdateUserTypeRequest
 import presentation.mapper.toResponse
 import java.util.UUID
 

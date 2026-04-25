@@ -1,7 +1,7 @@
 package presentation.mapper
 
 import core.model.user.UserProfile
-import presentation.dto.ProfileResponse
+import presentation.dto.user.ProfileResponse
 
 fun UserProfile.toResponse() = ProfileResponse(
     id = id.toString(),

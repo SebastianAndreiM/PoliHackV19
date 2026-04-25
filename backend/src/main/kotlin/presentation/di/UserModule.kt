@@ -1,9 +1,9 @@
 package presentation.di
 
 import core.repository.UserRepository
-import core.usecase.GetProfileUseCase
-import core.usecase.RegisterUserUseCase
-import core.usecase.UpdateUserTypeUseCase
+import core.usecase.user.GetProfileUseCase
+import core.usecase.user.RegisterUserUseCase
+import core.usecase.user.UpdateUserTypeUseCase
 import infra.repository.UserRepositoryImpl
 import org.koin.dsl.module
 

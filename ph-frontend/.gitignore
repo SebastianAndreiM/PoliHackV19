@@ -1,24 +1,58 @@
-# Logs
-logs
-*.log
+# Node dependencies
+node_modules/
+
+# Build outputs
+/dist/
+/build/
+/.output/
+
+# Framework-specific (future-proof)
+.next/
+.nuxt/
+.angular/
+.svelte-kit/
+
+# Vite / bundler caches
+.vite/
+node_modules/.vite/
+.parcel-cache/
+.cache/
+
+# Test coverage
+coverage/
+
+# Logs and diagnostics
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Environment files (keep examples)
+.env
+.env.*
+!.env.example
+!.env*.example
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+# Editor and IDE configs
+.idea/
+.vscode/
 *.sw?
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# ESLint / stylelint caches
+.eslintcache
+.stylelintcache
+
+# Storybook output
+storybook-static/
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.local
+*.tgz

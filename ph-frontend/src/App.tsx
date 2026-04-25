@@ -1,122 +1,103 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+
+import { registerUser, updateUserType } from "./api/userApi";
+import { AnalyticsPreview } from "./components/AnalyticsPreview";
+import { AssistantWidget } from "./components/AssistantWidget";
+import { BankingDemo } from "./components/BankingDemo";
+import { LandingHero } from "./components/LandingHero";
+import { UserTypeSelector } from "./components/UserTypeSelector";
+import { WalkthroughOverlay } from "./components/WalkthroughOverlay";
+import { onboardingWalkthrough } from "./mocks/walkthroughMock";
+import type { WalkthroughStep } from "./types/assistant";
+import type { UserProfile, UserType } from "./types/user";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [loadingUser, setLoadingUser] = useState(false);
+  const [steps, setSteps] = useState<WalkthroughStep[]>([]);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    async function createDemoUser() {
+      try {
+        setLoadingUser(true);
+
+        const profile = await registerUser({
+          externalId: "demo-user-assetguard",
+          locale: "ro",
+        });
+
+        setUser(profile);
+      } finally {
+        setLoadingUser(false);
+      }
+    }
+
+    createDemoUser();
+  }, []);
+
+  async function handleChangeUserType(type: UserType) {
+    if (!user) return;
+
+    try {
+      setLoadingUser(true);
+      const updated = await updateUserType(user.id, { userType: type });
+      setUser(updated);
+    } finally {
+      setLoadingUser(false);
+    }
+  }
+
+  function startWalkthrough(newSteps: WalkthroughStep[]) {
+    setSteps(newSteps);
+    setActiveStep(0);
+  }
+
+  function closeWalkthrough() {
+    setSteps([]);
+    setActiveStep(0);
+  }
+
+  function nextStep() {
+    if (activeStep === steps.length - 1) {
+      closeWalkthrough();
+      return;
+    }
+
+    setActiveStep((current) => current + 1);
+  }
+  function prevStep() {
+    setActiveStep((current) => Math.max(0, current - 1));
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <div className="app-shell">
+        <LandingHero
+            onStartOnboarding={() => startWalkthrough(onboardingWalkthrough)}
+        />
 
-      <div className="ticks"></div>
+        <UserTypeSelector
+            user={user}
+            loading={loadingUser}
+            onChangeType={handleChangeUserType}
+        />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <BankingDemo />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <AnalyticsPreview />
+
+        <AssistantWidget onStartWalkthrough={startWalkthrough} />
+
+        <WalkthroughOverlay
+            steps={steps}
+            activeIndex={activeStep}
+            onNext={nextStep}
+            onPrev={prevStep}
+            onClose={closeWalkthrough}
+        />
+      </div>
+  );
 }
 
-export default App
+export default App;

@@ -18,4 +18,4 @@ jwt:
   issuer: "microgrid-backend"
   audience: "microgrid-mobile"
   realm: "microgrid"
-  expiresInMs: 86400000  # 24 ore
+  expiresInMs: 86400000

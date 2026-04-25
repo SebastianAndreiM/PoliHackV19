@@ -1,8 +1,8 @@
-import com.assetguard.presentation.configureAuthentication
-import com.assetguard.presentation.configureDI
-import com.assetguard.presentation.configureRouting
-import com.assetguard.presentation.configureSerialization
-import com.assetguard.presentation.configureStatusPages
+import presentation.plugins.configureAuthentication
+import presentation.plugins.configureDI
+import presentation.plugins.configureRouting
+import presentation.plugins.configureSerialization
+import presentation.plugins.configureStatusPages
 import io.ktor.server.application.Application
 import presentation.plugins.configureDatabases
 

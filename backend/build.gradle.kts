@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(ktorLibs.plugins.ktor)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "com.assetguard"
@@ -18,7 +19,7 @@ val exposed_version = "0.52.0"
 val kotlin_version = "2.0.0"
 val logback_version = "1.4.14"
 val postgresql_version = "42.7.3"
-val koin_version = "3.5.6"
+val koin_version = "4.0.2"
 
 dependencies {
     // ── Ktor core ────────────────────────────────────────────────

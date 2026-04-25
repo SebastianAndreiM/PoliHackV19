@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.assetguard.domain.usecase.telemetry.GetHeatmapUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-25T18:40:12.462Z" hostname="DESKTOP-TMATNDQ" time="0.072">
+  <properties/>
+  <testcase name="get heatmap with screen filter passes filter to repo" classname="com.assetguard.domain.usecase.telemetry.GetHeatmapUseCaseTest" time="0.056"/>
+  <testcase name="heatmap entries are returned correctly" classname="com.assetguard.domain.usecase.telemetry.GetHeatmapUseCaseTest" time="0.008"/>
+  <testcase name="get heatmap without screen filter returns all data" classname="com.assetguard.domain.usecase.telemetry.GetHeatmapUseCaseTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

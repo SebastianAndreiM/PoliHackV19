@@ -1,6 +1,10 @@
 package presentation.plugins
 
 
+import core.usecase.telemetry.EndSessionUseCase
+import core.usecase.telemetry.GetHeatmapUseCase
+import core.usecase.telemetry.LogEventUseCase
+import core.usecase.telemetry.StartSessionUseCase
 import core.usecase.ui.GetAdaptiveLayoutUseCase
 import core.usecase.user.GetProfileUseCase
 import core.usecase.user.RegisterUserUseCase
@@ -13,6 +17,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 import presentation.routes.adaptiveUiRoutes
+import presentation.routes.telemetryRoutes
 import presentation.routes.userRoutes
 
 
@@ -23,6 +28,11 @@ fun Application.configureRouting() {
 
     val getLayout by inject<GetAdaptiveLayoutUseCase>()
 
+    val logEvent by inject<LogEventUseCase>()
+    val startSession by inject<StartSessionUseCase>()
+    val endSession by inject<EndSessionUseCase>()
+    val getHeatmap by inject<GetHeatmapUseCase>()
+
 
     routing {
         get("/health") {
@@ -31,6 +41,7 @@ fun Application.configureRouting() {
         route("/api/v1") {
             userRoutes(register, getProfile, updateType)
             adaptiveUiRoutes(getLayout, getProfile)
+            telemetryRoutes(logEvent, startSession, endSession, getHeatmap)
         }
     }
 }

@@ -2,7 +2,7 @@ package presentation.plugins
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import infra.db.UsersTable
+import infra.db.user.UsersTable
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
 import org.jetbrains.exposed.sql.Database

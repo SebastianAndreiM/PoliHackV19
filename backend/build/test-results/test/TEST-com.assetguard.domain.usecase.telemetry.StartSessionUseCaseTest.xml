@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.assetguard.domain.usecase.telemetry.StartSessionUseCaseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-25T18:40:12.634Z" hostname="DESKTOP-TMATNDQ" time="0.022">
+  <properties/>
+  <testcase name="start session with null deviceInfo is valid" classname="com.assetguard.domain.usecase.telemetry.StartSessionUseCaseTest" time="0.014"/>
+  <testcase name="start session creates session with null endedAt" classname="com.assetguard.domain.usecase.telemetry.StartSessionUseCaseTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

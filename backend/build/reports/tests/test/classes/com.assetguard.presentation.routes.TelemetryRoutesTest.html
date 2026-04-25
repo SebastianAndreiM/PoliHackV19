@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class com.assetguard.presentation.routes.TelemetryRoutesTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class com.assetguard.presentation.routes.TelemetryRoutesTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.assetguard.presentation.routes.html">com.assetguard.presentation.routes</a> &gt; TelemetryRoutesTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">10</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.271s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">GET heatmap returns 200 with entries</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">GET heatmap with empty entries returns valid response</td>
+<td class="success">0.017s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">GET heatmap with screen filter passes param</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">PATCH sessions end returns 200 with endedAt</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">PATCH sessions end returns 404 when not found</td>
+<td class="success">0.125s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">POST events returns 201 with event</td>
+<td class="success">0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">POST events with invalid eventType returns 400</td>
+<td class="success">0.022s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">POST events without optional fields returns 201</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">POST sessions returns 201 with session id</td>
+<td class="success">0.017s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">POST sessions without deviceInfo returns 201</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre id="class-stdout">2026-04-25 21:40:13.143 [DefaultDispatcher-worker-16 @call-context#211] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.149 [DefaultDispatcher-worker-16 @call-context#211] INFO  io.ktor.test - Application started in 0.006 seconds.
+2026-04-25 21:40:13.150 [DefaultDispatcher-worker-13 @coroutine#213] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.150 [DefaultDispatcher-worker-13 @coroutine#213] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.168 [DefaultDispatcher-worker-12 @call-context#225] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.169 [DefaultDispatcher-worker-12 @call-context#225] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 21:40:13.169 [DefaultDispatcher-worker-7 @coroutine#227] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.170 [DefaultDispatcher-worker-7 @coroutine#227] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.194 [DefaultDispatcher-worker-12 @call-context#239] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.197 [DefaultDispatcher-worker-12 @call-context#239] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 21:40:13.197 [DefaultDispatcher-worker-5 @coroutine#241] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.197 [DefaultDispatcher-worker-5 @coroutine#241] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.211 [DefaultDispatcher-worker-16 @call-context#253] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.212 [DefaultDispatcher-worker-16 @call-context#253] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-25 21:40:13.212 [DefaultDispatcher-worker-7 @coroutine#255] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.212 [DefaultDispatcher-worker-7 @coroutine#255] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.228 [DefaultDispatcher-worker-6 @call-context#267] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.230 [DefaultDispatcher-worker-6 @call-context#267] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 21:40:13.230 [DefaultDispatcher-worker-2 @coroutine#269] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.230 [DefaultDispatcher-worker-2 @coroutine#269] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.242 [DefaultDispatcher-worker-9 @call-context#281] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.244 [DefaultDispatcher-worker-9 @call-context#281] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-25 21:40:13.244 [DefaultDispatcher-worker-4 @coroutine#283] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.244 [DefaultDispatcher-worker-4 @coroutine#283] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.255 [DefaultDispatcher-worker-9 @call-context#295] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.255 [DefaultDispatcher-worker-9 @call-context#295] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 21:40:13.257 [DefaultDispatcher-worker-5 @coroutine#297] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.257 [DefaultDispatcher-worker-5 @coroutine#297] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.267 [DefaultDispatcher-worker-1 @call-context#311] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.267 [DefaultDispatcher-worker-1 @call-context#311] INFO  io.ktor.test - Application started in 0.0 seconds.
+2026-04-25 21:40:13.269 [DefaultDispatcher-worker-19 @coroutine#313] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.269 [DefaultDispatcher-worker-19 @coroutine#313] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.280 [DefaultDispatcher-worker-6 @call-context#325] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.281 [DefaultDispatcher-worker-6 @call-context#325] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-25 21:40:13.282 [DefaultDispatcher-worker-12 @coroutine#327] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.282 [DefaultDispatcher-worker-12 @coroutine#327] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-25 21:40:13.290 [DefaultDispatcher-worker-6 @call-context#337] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 21:40:13.291 [DefaultDispatcher-worker-6 @call-context#337] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-25 21:40:13.291 [DefaultDispatcher-worker-16 @coroutine#339] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 21:40:13.291 [DefaultDispatcher-worker-16 @coroutine#339] INFO  io.ktor.test - Responding at https://localhost:443
+</pre>
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="class-stdout">Copy</button>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.1.0</a> at Apr 25, 2026, 9:40:13 PM</p>
+</div>
+</div>
+</body>
+</html>

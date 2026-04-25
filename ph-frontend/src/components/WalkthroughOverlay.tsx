@@ -58,7 +58,6 @@ export function WalkthroughOverlay({
 
         const firstFrame = requestAnimationFrame(() => {
             updateRect();
-
             requestAnimationFrame(updateRect);
         });
 

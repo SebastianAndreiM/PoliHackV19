@@ -1,53 +1,39 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-import { registerUser, updateUserType } from "./api/userApi";
+import { getLayoutByUserType } from "./api/uiApi";
 import { AnalyticsPreview } from "./components/AnalyticsPreview";
 import { AssistantWidget } from "./components/AssistantWidget";
 import { BankingDemo } from "./components/BankingDemo";
 import { LandingHero } from "./components/LandingHero";
-import { UserTypeSelector } from "./components/UserTypeSelector";
+import { LayoutPreview } from "./components/LayoutPreview";
+import { LayoutSwitcher } from "./components/LayoutSwitcher";
 import { WalkthroughOverlay } from "./components/WalkthroughOverlay";
 import { onboardingWalkthrough } from "./mocks/walkthroughMock";
 import type { WalkthroughStep } from "./types/assistant";
-import type { UserProfile, UserType } from "./types/user";
+import type { AdaptiveLayout, UserType } from "./types/ui";
 
 function App() {
-  const [user, setUser] = useState<UserProfile | null>(null);
-  const [loadingUser, setLoadingUser] = useState(false);
+  const [selectedType, setSelectedType] = useState<UserType>("DEFAULT");
+  const [layout, setLayout] = useState<AdaptiveLayout | null>(null);
+  const [loadingLayout, setLoadingLayout] = useState(false);
+
   const [steps, setSteps] = useState<WalkthroughStep[]>([]);
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
-    async function createDemoUser() {
+    async function loadLayout() {
       try {
-        setLoadingUser(true);
-
-        const profile = await registerUser({
-          externalId: "demo-user-assetguard",
-          locale: "ro",
-        });
-
-        setUser(profile);
+        setLoadingLayout(true);
+        const data = await getLayoutByUserType(selectedType);
+        setLayout(data);
       } finally {
-        setLoadingUser(false);
+        setLoadingLayout(false);
       }
     }
 
-    createDemoUser();
-  }, []);
-
-  async function handleChangeUserType(type: UserType) {
-    if (!user) return;
-
-    try {
-      setLoadingUser(true);
-      const updated = await updateUserType(user.id, { userType: type });
-      setUser(updated);
-    } finally {
-      setLoadingUser(false);
-    }
-  }
+    loadLayout();
+  }, [selectedType]);
 
   function startWalkthrough(newSteps: WalkthroughStep[]) {
     setSteps(newSteps);
@@ -67,6 +53,7 @@ function App() {
 
     setActiveStep((current) => current + 1);
   }
+
   function prevStep() {
     setActiveStep((current) => Math.max(0, current - 1));
   }
@@ -77,17 +64,18 @@ function App() {
             onStartOnboarding={() => startWalkthrough(onboardingWalkthrough)}
         />
 
-        <UserTypeSelector
-            user={user}
-            loading={loadingUser}
-            onChangeType={handleChangeUserType}
-        />
+        <LayoutSwitcher selectedType={selectedType} onChange={setSelectedType} />
 
-        <BankingDemo />
+        <LayoutPreview layout={layout} loading={loadingLayout} />
+
+        <BankingDemo layout={layout} />
 
         <AnalyticsPreview />
 
-        <AssistantWidget onStartWalkthrough={startWalkthrough} />
+        <AssistantWidget
+            onStartWalkthrough={startWalkthrough}
+            activeStep={steps[activeStep] ?? null}
+        />
 
         <WalkthroughOverlay
             steps={steps}

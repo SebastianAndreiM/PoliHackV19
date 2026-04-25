@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { AssistantMessage, WalkthroughStep } from "../types/assistant";
 import {
     getMockAssistantReply,
@@ -7,14 +7,35 @@ import {
 
 type Props = {
     onStartWalkthrough: (steps: WalkthroughStep[]) => void;
+    activeStep?: WalkthroughStep | null;
 };
 
-export function AssistantWidget({ onStartWalkthrough }: Props) {
+export function AssistantWidget({
+                                    onStartWalkthrough,
+                                    activeStep,
+                                }: Props) {
     const [open, setOpen] = useState(true);
     const [input, setInput] = useState("");
+    const [lastExplainedStepId, setLastExplainedStepId] = useState<string | null>(
+        null
+    );
     const [messages, setMessages] = useState<AssistantMessage[]>(
         initialAssistantMessages
     );
+
+    useEffect(() => {
+        if (!activeStep) return;
+        if (activeStep.id === lastExplainedStepId) return;
+
+        const message: AssistantMessage = {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            text: activeStep.assistantText,
+        };
+
+        setMessages((current) => [...current, message]);
+        setLastExplainedStepId(activeStep.id);
+    }, [activeStep, lastExplainedStepId]);
 
     function sendMessage() {
         if (!input.trim()) return;

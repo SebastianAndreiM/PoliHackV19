@@ -1,37 +1,87 @@
 import { useState } from "react";
 import { mockAccounts, mockTransactions } from "../mocks/bankingMock";
+import type { AdaptiveLayout } from "../types/ui";
 
 type Page = "overview" | "payments" | "cards" | "savings" | "support";
 
-export function BankingDemo() {
+type Props = {
+    layout: AdaptiveLayout | null;
+};
+
+export function BankingDemo({ layout }: Props) {
     const [page, setPage] = useState<Page>("overview");
     const mainAccount = mockAccounts[0];
 
+    const components = [...(layout?.components ?? [])].sort(
+        (a, b) => a.order - b.order
+    );
+
+    function isVisible(key: string) {
+        return components.find((component) => component.key === key)?.visible ?? true;
+    }
+
+    function getConfig(key: string) {
+        return components.find((component) => component.key === key)?.config ?? {};
+    }
+
+    const isAccessible = layout?.theme === "accessible";
+    const fontScale = isAccessible ? 1.18 : 1;
+    const explanationLevel = isAccessible ? "detailed" : "balanced";
+
+    const recentTransactionsConfig = getConfig("recent_transactions");
+    const transactionLimit =
+        typeof recentTransactionsConfig.limit === "number"
+            ? recentTransactionsConfig.limit
+            : 3;
+
+    const quickActionsConfig = getConfig("quick_actions");
+    const quickActions = Array.isArray(quickActionsConfig.actions)
+        ? quickActionsConfig.actions
+        : [];
+
+    const navItems = [
+        { label: "Overview", page: "overview" as Page, visible: true },
+        {
+            label: "Payments",
+            page: "payments" as Page,
+            visible: isVisible("quick_actions"),
+        },
+        { label: "Cards", page: "cards" as Page, visible: true },
+        {
+            label: "Savings",
+            page: "savings" as Page,
+            visible: isVisible("fx_rates"),
+        },
+        {
+            label: "Support",
+            page: "support" as Page,
+            visible: isVisible("support_banner"),
+        },
+    ].filter((item) => item.visible);
+
     return (
-        <section id="demo" className="banking-demo">
+        <section
+            id="demo"
+            className={`banking-demo ${isAccessible ? "accessible-layout" : ""}`}
+        >
             <aside className="bank-sidebar">
                 <div className="brand-mark">AG</div>
 
                 <nav>
-                    <button className={page === "overview" ? "active" : ""} onClick={() => setPage("overview")}>
-                        Overview
-                    </button>
-                    <button id="nav-payments" className={page === "payments" ? "active" : ""} onClick={() => setPage("payments")}>
-                        Payments
-                    </button>
-                    <button id="nav-cards" className={page === "cards" ? "active" : ""} onClick={() => setPage("cards")}>
-                        Cards
-                    </button>
-                    <button id="nav-savings" className={page === "savings" ? "active" : ""} onClick={() => setPage("savings")}>
-                        Savings
-                    </button>
-                    <button id="nav-support" className={page === "support" ? "active" : ""} onClick={() => setPage("support")}>
-                        Support
-                    </button>
+                    {navItems.map((item) => (
+                        <button
+                            key={item.page}
+                            id={item.page === "payments" ? "nav-payments" : undefined}
+                            className={page === item.page ? "active" : ""}
+                            onClick={() => setPage(item.page)}
+                        >
+                            {item.label}
+                        </button>
+                    ))}
                 </nav>
             </aside>
 
-            <main className="bank-main">
+            <main className="bank-main" style={{ fontSize: `${fontScale}em` }}>
                 {page === "overview" && (
                     <>
                         <div className="bank-header">
@@ -39,24 +89,44 @@ export function BankingDemo() {
                                 <span className="eyebrow">NestBank demo app</span>
                                 <h2>Good afternoon, Sebastian</h2>
                             </div>
+
                             <button className="ghost-button">Secure session</button>
                         </div>
 
                         <div className="bank-grid">
-                            <div id="balance-card" className="balance-card">
-                                <span>Total balance</span>
-                                <strong>{mainAccount.balance.toLocaleString("en-US", { minimumFractionDigits: 2 })} {mainAccount.currency}</strong>
-                                <small>{mainAccount.iban}</small>
-                            </div>
+                            {isVisible("balance_card") && (
+                                <div id="balance-card" className="balance-card">
+                                    <span>Total balance</span>
+                                    <strong>
+                                        {mainAccount.balance.toLocaleString("en-US", {
+                                            minimumFractionDigits: 2,
+                                        })}{" "}
+                                        {mainAccount.currency}
+                                    </strong>
+                                    <small>{mainAccount.iban}</small>
+                                </div>
+                            )}
 
-                            <div id="transfer-card" className="transfer-card">
-                                <span className="eyebrow">Quick transfer</span>
-                                <label>Receiver IBAN<input id="iban-input" placeholder="RO49 BTRL..." /></label>
-                                <label>Amount<input id="amount-input" placeholder="250.00" /></label>
-                                <button id="confirm-transfer" className="primary">Confirm transfer</button>
-                            </div>
+                            {isVisible("quick_actions") && (
+                                <TransferCard
+                                    explanationLevel={explanationLevel}
+                                    quickActions={quickActions}
+                                />
+                            )}
 
-                            <Transactions />
+                            {isVisible("support_banner") && (
+                                <div className="support-banner">
+                                    <strong>Need help?</strong>
+                                    <span>
+                    AssetGuard AI can guide you step by step through any banking
+                    flow.
+                  </span>
+                                </div>
+                            )}
+
+                            {isVisible("recent_transactions") && (
+                                <Transactions limit={transactionLimit} />
+                            )}
                         </div>
                     </>
                 )}
@@ -68,36 +138,118 @@ export function BankingDemo() {
                                 <span className="eyebrow">Payments</span>
                                 <h2>Make a safe transfer</h2>
                             </div>
+
                             <button className="ghost-button">Verified flow</button>
                         </div>
 
                         <div className="bank-grid">
-                            <div id="transfer-card" className="transfer-card">
-                                <span className="eyebrow">Bank transfer</span>
-                                <label>Receiver IBAN<input id="iban-input" placeholder="RO49 BTRL..." /></label>
-                                <label>Amount<input id="amount-input" placeholder="250.00" /></label>
-                                <label>Details<input placeholder="Optional message" /></label>
-                                <button id="confirm-transfer" className="primary">Confirm transfer</button>
-                            </div>
+                            <TransferCard
+                                explanationLevel={explanationLevel}
+                                quickActions={quickActions}
+                            />
 
-                            <div className="balance-card">
-                                <span>From account</span>
-                                <strong>Main account</strong>
-                                <small>{mainAccount.iban}</small>
-                            </div>
+                            {isVisible("balance_card") && (
+                                <div className="balance-card">
+                                    <span>From account</span>
+                                    <strong>Main account</strong>
+                                    <small>{mainAccount.iban}</small>
+                                </div>
+                            )}
+
+                            {isVisible("support_banner") && (
+                                <div className="support-banner">
+                                    <strong>Not sure what to do?</strong>
+                                    <span>
+                    Ask AssetGuard AI and it will explain each field before you
+                    confirm.
+                  </span>
+                                </div>
+                            )}
                         </div>
                     </>
                 )}
 
-                {page === "cards" && <SimplePage title="Cards" text="Manage card limits, freeze cards and view security settings." />}
-                {page === "savings" && <SimplePage title="Savings" text="Create saving goals and track progress." />}
-                {page === "support" && <SimplePage title="Support" text="Get help from the AI guide or contact a human advisor." />}
+                {page === "cards" && (
+                    <SimplePage
+                        title="Cards"
+                        text="Manage card limits, freeze cards and view security settings."
+                    />
+                )}
+
+                {page === "savings" && (
+                    <SimplePage
+                        title="Savings"
+                        text="Create saving goals and track progress."
+                    />
+                )}
+
+                {page === "support" && (
+                    <SimplePage
+                        title="Support"
+                        text="Get help from the AI guide or contact a human advisor."
+                    />
+                )}
             </main>
         </section>
     );
 }
 
-function Transactions() {
+function TransferCard({
+                          explanationLevel,
+                          quickActions,
+                      }: {
+    explanationLevel: string;
+    quickActions: unknown[];
+}) {
+    const showRequestAction = quickActions.includes("request");
+
+    return (
+        <div id="transfer-card" className="transfer-card">
+            <span className="eyebrow">Quick transfer</span>
+
+            <label>
+                Receiver IBAN
+                <input id="iban-input" placeholder="RO49 BTRL..." />
+
+                {explanationLevel !== "short" && (
+                    <p className="field-hint">
+                        The IBAN identifies the receiver account.
+                    </p>
+                )}
+
+                {explanationLevel === "detailed" && (
+                    <p className="field-hint">
+                        Double check the IBAN carefully. One wrong character can block the
+                        transfer or send money to the wrong account.
+                    </p>
+                )}
+            </label>
+
+            <label>
+                Amount
+                <input id="amount-input" placeholder="250.00" />
+
+                {explanationLevel === "detailed" && (
+                    <p className="field-hint">
+                        Check the amount and currency before continuing.
+                    </p>
+                )}
+            </label>
+
+            <button id="confirm-transfer" className="primary">
+                Confirm transfer
+            </button>
+
+            {showRequestAction && (
+                <button type="button" className="ghost-button">
+                    Request money
+                </button>
+            )}
+        </div>
+    );
+}
+
+function Transactions({ limit }: { limit: number }) {
     return (
         <div className="transactions-card">
             <div className="card-title-row">
@@ -105,12 +257,15 @@ function Transactions() {
                 <span>Mock data</span>
             </div>
 
-            {mockTransactions.map((transaction) => (
+            {mockTransactions.slice(0, limit).map((transaction) => (
                 <div className="transaction-row" key={transaction.id}>
                     <div>
                         <strong>{transaction.title}</strong>
-                        <span>{transaction.category} · {transaction.date}</span>
+                        <span>
+              {transaction.category} · {transaction.date}
+            </span>
                     </div>
+
                     <b className={transaction.amount > 0 ? "positive" : ""}>
                         {transaction.amount > 0 ? "+" : ""}
                         {transaction.amount.toFixed(2)} RON

@@ -1,15 +1,14 @@
-import { useState } from "react";
 import { mockAccounts, mockTransactions } from "../mocks/bankingMock";
+import type { BankPage } from "../types/assistant";
 import type { AdaptiveLayout } from "../types/ui";
-
-type Page = "overview" | "payments" | "cards" | "savings" | "support";
 
 type Props = {
     layout: AdaptiveLayout | null;
+    page: BankPage;
+    onChangePage: (page: BankPage) => void;
 };
 
-export function BankingDemo({ layout }: Props) {
-    const [page, setPage] = useState<Page>("overview");
+export function BankingDemo({ layout, page, onChangePage }: Props) {
     const mainAccount = mockAccounts[0];
 
     const components = [...(layout?.components ?? [])].sort(
@@ -17,7 +16,9 @@ export function BankingDemo({ layout }: Props) {
     );
 
     function isVisible(key: string) {
-        return components.find((component) => component.key === key)?.visible ?? true;
+        return (
+            components.find((component) => component.key === key)?.visible ?? true
+        );
     }
 
     function getConfig(key: string) {
@@ -40,21 +41,21 @@ export function BankingDemo({ layout }: Props) {
         : [];
 
     const navItems = [
-        { label: "Overview", page: "overview" as Page, visible: true },
+        { label: "Overview", page: "overview" as BankPage, visible: true },
         {
             label: "Payments",
-            page: "payments" as Page,
+            page: "payments" as BankPage,
             visible: isVisible("quick_actions"),
         },
-        { label: "Cards", page: "cards" as Page, visible: true },
+        { label: "Cards", page: "cards" as BankPage, visible: true },
         {
             label: "Savings",
-            page: "savings" as Page,
+            page: "savings" as BankPage,
             visible: isVisible("fx_rates"),
         },
         {
             label: "Support",
-            page: "support" as Page,
+            page: "support" as BankPage,
             visible: isVisible("support_banner"),
         },
     ].filter((item) => item.visible);
@@ -71,9 +72,9 @@ export function BankingDemo({ layout }: Props) {
                     {navItems.map((item) => (
                         <button
                             key={item.page}
-                            id={item.page === "payments" ? "nav-payments" : undefined}
+                            id={`nav-${item.page}`}
                             className={page === item.page ? "active" : ""}
-                            onClick={() => setPage(item.page)}
+                            onClick={() => onChangePage(item.page)}
                         >
                             {item.label}
                         </button>
@@ -89,7 +90,6 @@ export function BankingDemo({ layout }: Props) {
                                 <span className="eyebrow">NestBank demo app</span>
                                 <h2>Good afternoon, Sebastian</h2>
                             </div>
-
                             <button className="ghost-button">Secure session</button>
                         </div>
 
@@ -138,7 +138,6 @@ export function BankingDemo({ layout }: Props) {
                                 <span className="eyebrow">Payments</span>
                                 <h2>Make a safe transfer</h2>
                             </div>
-
                             <button className="ghost-button">Verified flow</button>
                         </div>
 
@@ -169,26 +168,11 @@ export function BankingDemo({ layout }: Props) {
                     </>
                 )}
 
-                {page === "cards" && (
-                    <SimplePage
-                        title="Cards"
-                        text="Manage card limits, freeze cards and view security settings."
-                    />
-                )}
+                {page === "cards" && <CardsPage />}
 
-                {page === "savings" && (
-                    <SimplePage
-                        title="Savings"
-                        text="Create saving goals and track progress."
-                    />
-                )}
+                {page === "savings" && <SavingsPage />}
 
-                {page === "support" && (
-                    <SimplePage
-                        title="Support"
-                        text="Get help from the AI guide or contact a human advisor."
-                    />
-                )}
+                {page === "support" && <SupportPage />}
             </main>
         </section>
     );
@@ -210,30 +194,19 @@ function TransferCard({
             <label>
                 Receiver IBAN
                 <input id="iban-input" placeholder="RO49 BTRL..." />
-
                 {explanationLevel !== "short" && (
                     <p className="field-hint">
                         The IBAN identifies the receiver account.
                     </p>
                 )}
-
                 {explanationLevel === "detailed" && (
-                    <p className="field-hint">
-                        Double check the IBAN carefully. One wrong character can block the
-                        transfer or send money to the wrong account.
-                    </p>
+                    <p className="field-hint">Double check the IBAN carefully.</p>
                 )}
             </label>
 
             <label>
                 Amount
                 <input id="amount-input" placeholder="250.00" />
-
-                {explanationLevel === "detailed" && (
-                    <p className="field-hint">
-                        Check the amount and currency before continuing.
-                    </p>
-                )}
             </label>
 
             <button id="confirm-transfer" className="primary">
@@ -252,36 +225,95 @@ function TransferCard({
 function Transactions({ limit }: { limit: number }) {
     return (
         <div className="transactions-card">
-            <div className="card-title-row">
-                <h3>Recent activity</h3>
-                <span>Mock data</span>
-            </div>
+            <h3>Recent activity</h3>
 
             {mockTransactions.slice(0, limit).map((transaction) => (
-                <div className="transaction-row" key={transaction.id}>
-                    <div>
-                        <strong>{transaction.title}</strong>
-                        <span>
-              {transaction.category} · {transaction.date}
-            </span>
-                    </div>
-
-                    <b className={transaction.amount > 0 ? "positive" : ""}>
-                        {transaction.amount > 0 ? "+" : ""}
-                        {transaction.amount.toFixed(2)} RON
-                    </b>
+                <div key={transaction.id} className="transaction-row">
+                    <span>{transaction.title}</span>
+                    <b>{transaction.amount} RON</b>
                 </div>
             ))}
         </div>
     );
 }
 
-function SimplePage({ title, text }: { title: string; text: string }) {
+function CardsPage() {
     return (
-        <div className="empty-bank-page">
-            <span className="eyebrow">Mock section</span>
-            <h2>{title}</h2>
-            <p>{text}</p>
+        <div className="mock-page-grid">
+            <div id="card-management-card" className="mock-feature-card">
+                <span className="eyebrow">Cards</span>
+                <h2>Card management</h2>
+                <p>Freeze cards, change limits, view PIN help and security settings.</p>
+                <button className="primary">Freeze card</button>
+            </div>
+
+            <div id="daily-limit-card" className="mock-feature-card">
+                <h3>Daily limit</h3>
+                <strong>2,500 RON</strong>
+                <p>Recommended for your current spending pattern.</p>
+            </div>
+
+            <div id="security-tips-card" className="mock-feature-card wide">
+                <h3>Security tips</h3>
+                <p>
+                    AssetGuard can explain what every card security option means before
+                    the user changes it.
+                </p>
+            </div>
+        </div>
+    );
+}
+
+function SavingsPage() {
+    return (
+        <div className="mock-page-grid">
+            <div id="saving-goals-card" className="mock-feature-card">
+                <span className="eyebrow">Savings</span>
+                <h2>Saving goals</h2>
+                <p>Create goals, track progress and receive simple AI suggestions.</p>
+                <button className="primary">Create goal</button>
+            </div>
+
+            <div id="vacation-fund-card" className="mock-feature-card">
+                <h3>Vacation fund</h3>
+                <strong>68%</strong>
+                <p>2,040 RON saved from 3,000 RON target.</p>
+            </div>
+
+            <div id="saving-ai-suggestion-card" className="mock-feature-card wide">
+                <h3>AI suggestion</h3>
+                <p>
+                    Move 150 RON this week to stay on track without affecting daily
+                    spending.
+                </p>
+            </div>
+        </div>
+    );
+}
+
+function SupportPage() {
+    return (
+        <div className="mock-page-grid">
+            <div id="help-center-card" className="mock-feature-card">
+                <span className="eyebrow">Support</span>
+                <h2>Help center</h2>
+                <p>Ask the assistant or escalate to a human advisor when needed.</p>
+                <button className="primary">Ask AssetGuard</button>
+            </div>
+
+            <div id="estimated-wait-card" className="mock-feature-card">
+                <h3>Estimated wait</h3>
+                <strong>2 min</strong>
+                <p>AI resolves most common questions instantly.</p>
+            </div>
+
+            <div id="handoff-card" className="mock-feature-card wide">
+                <h3>Human handoff</h3>
+                <p>
+                    When AI cannot solve the problem, it summarizes the context before
+                    sending the user to human support.
+                </p>
+            </div>
         </div>
     );
 }

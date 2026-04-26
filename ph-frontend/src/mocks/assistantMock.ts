@@ -1,5 +1,10 @@
 import type { AssistantMessage } from "../types/assistant";
-import { transferWalkthrough } from "./walkthroughMock";
+import {
+    cardsWalkthrough,
+    savingsWalkthrough,
+    supportWalkthrough,
+    transferWalkthrough,
+} from "./walkthroughMock";
 
 export const initialAssistantMessages: AssistantMessage[] = [
     {
@@ -16,7 +21,7 @@ export function getMockAssistantReply(input: string) {
         normalized.includes("transfer") ||
         normalized.includes("send") ||
         normalized.includes("plata") ||
-        normalized.includes("transfer")
+        normalized.includes("payment")
     ) {
         return {
             message: "Sure. I will guide you step by step through a safe transfer.",
@@ -26,13 +31,35 @@ export function getMockAssistantReply(input: string) {
 
     if (
         normalized.includes("card") ||
+        normalized.includes("cards") ||
         normalized.includes("limit") ||
         normalized.includes("freeze")
     ) {
         return {
-            message:
-                "Card management is in the Cards area. I can guide you there and explain each option.",
-            walkthrough: [],
+            message: "Sure. I will guide you through the Cards section.",
+            walkthrough: cardsWalkthrough,
+        };
+    }
+
+    if (
+        normalized.includes("saving") ||
+        normalized.includes("savings") ||
+        normalized.includes("goal")
+    ) {
+        return {
+            message: "Sure. I will guide you through the Savings section.",
+            walkthrough: savingsWalkthrough,
+        };
+    }
+
+    if (
+        normalized.includes("support") ||
+        normalized.includes("help") ||
+        normalized.includes("advisor")
+    ) {
+        return {
+            message: "Sure. I will guide you through the Support section.",
+            walkthrough: supportWalkthrough,
         };
     }
 

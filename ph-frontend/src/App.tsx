@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import { getLayoutByUserType } from "./api/uiApi";
-import { AnalyticsPreview } from "./components/AnalyticsPreview";
+import { DashboardPage } from "./components/DashboardPage";
 import { AssistantWidget } from "./components/AssistantWidget";
 import { BankingDemo } from "./components/BankingDemo";
 import { LandingHero } from "./components/LandingHero";
@@ -104,7 +104,7 @@ function App() {
                 onChangePage={setBankPage}
             />
 
-            <AnalyticsPreview />
+            <DashboardPage />
 
             <AssistantWidget
                 userId={userId}

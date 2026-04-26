@@ -2,6 +2,9 @@ package presentation.plugins
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import infra.db.ai.AIChatLogsTable
+import infra.db.telemetry.SessionsTable
+import infra.db.telemetry.TelemetryEventsTable
 import infra.db.user.UsersTable
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
@@ -27,7 +30,7 @@ fun Application.configureDatabases() {
 
     transaction {
         SchemaUtils.createMissingTablesAndColumns(
-            UsersTable,
+            UsersTable, SessionsTable, TelemetryEventsTable, AIChatLogsTable
         )
     }
 

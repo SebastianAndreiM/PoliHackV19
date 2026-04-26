@@ -72,6 +72,8 @@ dependencies {
     // ── Config ───────────────────────────────────────────────────
     implementation("io.ktor:ktor-server-config-yaml:$ktor_version")
 
+    implementation("io.ktor:ktor-client-okhttp:3.4.0")
+
     // ── Test ─────────────────────────────────────────────────────
     testImplementation("io.ktor:ktor-server-test-host-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")

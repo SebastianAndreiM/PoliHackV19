@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.assetguard.ServerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-25T18:40:10.612Z" hostname="DESKTOP-TMATNDQ" time="0.895">
+<testsuite name="com.assetguard.ServerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-25T19:42:41.986Z" hostname="DESKTOP-TMATNDQ" time="0.85">
   <properties/>
-  <testcase name="test root endpoint" classname="com.assetguard.ServerTest" time="0.895"/>
-  <system-out><![CDATA[2026-04-25 21:40:11.327 [DefaultDispatcher-worker-1 @call-context#3] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
-2026-04-25 21:40:11.376 [DefaultDispatcher-worker-1 @call-context#3] INFO  io.ktor.test - Application started in 0.064 seconds.
-2026-04-25 21:40:11.378 [DefaultDispatcher-worker-2 @coroutine#5] INFO  io.ktor.test - Responding at http://localhost:80
-2026-04-25 21:40:11.379 [DefaultDispatcher-worker-2 @coroutine#5] INFO  io.ktor.test - Responding at https://localhost:443
+  <testcase name="test root endpoint" classname="com.assetguard.ServerTest" time="0.85"/>
+  <system-out><![CDATA[2026-04-25 22:42:42.666 [DefaultDispatcher-worker-2 @call-context#3] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-25 22:42:42.708 [DefaultDispatcher-worker-2 @call-context#3] INFO  io.ktor.test - Application started in 0.056 seconds.
+2026-04-25 22:42:42.710 [DefaultDispatcher-worker-3 @coroutine#5] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-25 22:42:42.710 [DefaultDispatcher-worker-3 @coroutine#5] INFO  io.ktor.test - Responding at https://localhost:443
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -13,7 +13,8 @@ export async function http<T>(
         ...options,
     });
     if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        const body = await response.text().catch(() => "");
+        throw new Error(`HTTP ${response.status}: ${body}`);
     }
     return response.json();
 }

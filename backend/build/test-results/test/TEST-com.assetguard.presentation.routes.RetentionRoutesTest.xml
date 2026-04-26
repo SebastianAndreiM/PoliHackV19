@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.assetguard.presentation.routes.RetentionRoutesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-04-26T08:45:28.704Z" hostname="DESKTOP-TMATNDQ" time="0.092">
+  <properties/>
+  <testcase name="GET nudges returns empty list when no nudges" classname="com.assetguard.presentation.routes.RetentionRoutesTest" time="0.044"/>
+  <testcase name="GET nudges returns 200 with nudges list" classname="com.assetguard.presentation.routes.RetentionRoutesTest" time="0.013"/>
+  <testcase name="GET nudges response contains required fields" classname="com.assetguard.presentation.routes.RetentionRoutesTest" time="0.014"/>
+  <testcase name="GET nudges for ABANDON type has transfer deepLink" classname="com.assetguard.presentation.routes.RetentionRoutesTest" time="0.01"/>
+  <testcase name="GET nudges returns nudges sorted by priority" classname="com.assetguard.presentation.routes.RetentionRoutesTest" time="0.011"/>
+  <system-out><![CDATA[2026-04-26 11:45:28.739 [DefaultDispatcher-worker-5 @call-context#227] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-26 11:45:28.742 [DefaultDispatcher-worker-5 @call-context#227] INFO  io.ktor.test - Application started in 0.004 seconds.
+2026-04-26 11:45:28.742 [DefaultDispatcher-worker-11 @coroutine#229] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-26 11:45:28.742 [DefaultDispatcher-worker-11 @coroutine#229] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-26 11:45:28.754 [DefaultDispatcher-worker-5 @call-context#241] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-26 11:45:28.755 [DefaultDispatcher-worker-5 @call-context#241] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-26 11:45:28.756 [DefaultDispatcher-worker-10 @coroutine#243] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-26 11:45:28.756 [DefaultDispatcher-worker-10 @coroutine#243] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-26 11:45:28.766 [DefaultDispatcher-worker-2 @call-context#255] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-26 11:45:28.769 [DefaultDispatcher-worker-2 @call-context#255] INFO  io.ktor.test - Application started in 0.003 seconds.
+2026-04-26 11:45:28.769 [DefaultDispatcher-worker-14 @coroutine#257] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-26 11:45:28.769 [DefaultDispatcher-worker-14 @coroutine#257] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-26 11:45:28.780 [DefaultDispatcher-worker-10 @call-context#269] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-26 11:45:28.781 [DefaultDispatcher-worker-10 @call-context#269] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-04-26 11:45:28.781 [DefaultDispatcher-worker-8 @coroutine#271] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-26 11:45:28.781 [DefaultDispatcher-worker-8 @coroutine#271] INFO  io.ktor.test - Responding at https://localhost:443
+2026-04-26 11:45:28.791 [DefaultDispatcher-worker-10 @call-context#283] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-04-26 11:45:28.793 [DefaultDispatcher-worker-10 @call-context#283] INFO  io.ktor.test - Application started in 0.002 seconds.
+2026-04-26 11:45:28.793 [DefaultDispatcher-worker-5 @coroutine#285] INFO  io.ktor.test - Responding at http://localhost:80
+2026-04-26 11:45:28.793 [DefaultDispatcher-worker-5 @coroutine#285] INFO  io.ktor.test - Responding at https://localhost:443
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-25T19:42:44.449Z" hostname="DESKTOP-TMATNDQ" time="0.081">
+<testsuite name="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-26T08:45:28.375Z" hostname="DESKTOP-TMATNDQ" time="0.083">
   <properties/>
-  <testcase name="returns null when user does not exist" classname="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" time="0.074"/>
-  <testcase name="returns profile when user exists" classname="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" time="0.007"/>
+  <testcase name="returns null when user does not exist" classname="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" time="0.075"/>
+  <testcase name="returns profile when user exists" classname="com.assetguard.domain.usecase.user.GetProfileUseCaseTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

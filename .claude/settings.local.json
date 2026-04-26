@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"D:\\\\Facultate\\\\Polihack\\\\PoliHackV19\"; git status --short | Where-Object { $_ -notmatch \"backend/\\(\\\\.gradle|build\\)/\" })",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:8081/health\" -UseBasicParsing -TimeoutSec 3 | Select-Object StatusCode, Content)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:8081/health\" -UseBasicParsing -TimeoutSec 3; \"Status: $\\($r.StatusCode\\) - $\\($r.Content\\)\" } catch { \"Eroare: $_\" })",
+      "PowerShell(try { $body = '{\"userId\":\"00000000-0000-0000-0000-000000000001\",\"userType\":\"DEFAULT\",\"message\":\"transfer\"}'; $r = Invoke-WebRequest -Uri \"http://localhost:8081/api/v1/ai/chat\" -Method POST -Body $body -ContentType \"application/json\" -UseBasicParsing -TimeoutSec 5; \"Status: $\\($r.StatusCode\\)`n$\\($r.Content\\)\" } catch { \"Eroare: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:8081/api/v1/ai/chat\" -Method OPTIONS -Headers @{\"Origin\"=\"http://localhost:5173\";\"Access-Control-Request-Method\"=\"POST\";\"Access-Control-Request-Headers\"=\"Content-Type\"} -UseBasicParsing -TimeoutSec 5; \"Status: $\\($r.StatusCode\\)`nHeaders: $\\($r.Headers | Out-String\\)\" } catch { \"Eroare: $_\" })"
+    ]
+  }
+}

@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
+import { sendChatMessage } from "../api/aiApi";
+import { initialAssistantMessages } from "../mocks/assistantMock";
 import type { AssistantMessage, WalkthroughStep } from "../types/assistant";
+import type { UserType } from "../types/ui";
 import {
-    getMockAssistantReply,
-    initialAssistantMessages,
-} from "../mocks/assistantMock";
+    cardsWalkthrough,
+    savingsWalkthrough,
+    supportWalkthrough,
+    transferWalkthrough,
+} from "../mocks/walkthroughMock";
 
 type Props = {
+    userId: string;
+    userType: UserType;
     onStartWalkthrough: (steps: WalkthroughStep[]) => void;
     activeStep?: WalkthroughStep | null;
 };
 
-export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
+function walkthroughForDeepLink(deepLink: string | null): WalkthroughStep[] {
+    if (!deepLink) return [];
+    if (deepLink.startsWith("/transfer")) return transferWalkthrough;
+    if (deepLink.startsWith("/card")) return cardsWalkthrough;
+    if (deepLink.startsWith("/savings")) return savingsWalkthrough;
+    if (deepLink.startsWith("/support")) return supportWalkthrough;
+    return [];
+}
+
+export function AssistantWidget({ userId, userType, onStartWalkthrough, activeStep }: Props) {
     const [open, setOpen] = useState(true);
     const [input, setInput] = useState("");
-    const [lastExplainedStepId, setLastExplainedStepId] = useState<string | null>(
-        null
-    );
-    const [messages, setMessages] = useState<AssistantMessage[]>(
-        initialAssistantMessages
-    );
+    const [loading, setLoading] = useState(false);
+    const [lastExplainedStepId, setLastExplainedStepId] = useState<string | null>(null);
+    const [messages, setMessages] = useState<AssistantMessage[]>(initialAssistantMessages);
 
     useEffect(() => {
         if (!activeStep) return;
@@ -34,8 +47,8 @@ export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
         setLastExplainedStepId(activeStep.id);
     }, [activeStep, lastExplainedStepId]);
 
-    function sendMessage() {
-        if (!input.trim()) return;
+    async function sendMessage() {
+        if (!input.trim() || loading) return;
 
         const userMessage: AssistantMessage = {
             id: crypto.randomUUID(),
@@ -43,19 +56,35 @@ export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
             text: input,
         };
 
-        const reply = getMockAssistantReply(input);
-
-        const assistantMessage: AssistantMessage = {
-            id: crypto.randomUUID(),
-            role: "assistant",
-            text: reply.message,
-        };
-
-        setMessages((current) => [...current, userMessage, assistantMessage]);
+        setMessages((current) => [...current, userMessage]);
+        const sentText = input;
         setInput("");
+        setLoading(true);
 
-        if (reply.walkthrough.length > 0) {
-            onStartWalkthrough(reply.walkthrough);
+        try {
+            const response = await sendChatMessage({ userId, userType, message: sentText });
+
+            setMessages((current) => [
+                ...current,
+                { id: response.id, role: "assistant", text: response.reply },
+            ]);
+
+            const steps = walkthroughForDeepLink(response.deepLink);
+            if (steps.length > 0) {
+                onStartWalkthrough(steps);
+            }
+        } catch (err) {
+            const detail = err instanceof Error ? err.message : "eroare necunoscută";
+            setMessages((current) => [
+                ...current,
+                {
+                    id: crypto.randomUUID(),
+                    role: "assistant",
+                    text: `Eroare: ${detail}`,
+                },
+            ]);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -88,6 +117,9 @@ export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
                                 {message.text}
                             </div>
                         ))}
+                        {loading && (
+                            <div className="assistant-message assistant">...</div>
+                        )}
                     </div>
 
                     <div className="assistant-input">
@@ -98,8 +130,11 @@ export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
                             onKeyDown={(event) => {
                                 if (event.key === "Enter") sendMessage();
                             }}
+                            disabled={loading}
                         />
-                        <button onClick={sendMessage}>Send</button>
+                        <button onClick={sendMessage} disabled={loading}>
+                            Send
+                        </button>
                     </div>
                 </div>
             )}

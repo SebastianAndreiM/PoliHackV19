@@ -1,6 +1,8 @@
 package presentation.plugins
 
 
+import core.usecase.ai.GetChatHistoryUseCase
+import core.usecase.ai.SendMessageUseCase
 import core.usecase.retention.GetNudgesUseCase
 import core.usecase.telemetry.EndSessionUseCase
 import core.usecase.telemetry.GetHeatmapUseCase
@@ -18,6 +20,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 import presentation.routes.adaptiveUiRoutes
+import presentation.routes.aiAssistantRoutes
 import presentation.routes.retentionRoutes
 import presentation.routes.telemetryRoutes
 import presentation.routes.userRoutes
@@ -36,6 +39,8 @@ fun Application.configureRouting() {
     val getHeatmap by inject<GetHeatmapUseCase>()
 
     val getNudges by inject<GetNudgesUseCase>()
+    val sendMessage by inject<SendMessageUseCase>()
+    val getChatHistory by inject<GetChatHistoryUseCase>()
 
     routing {
         get("/health") {
@@ -47,6 +52,7 @@ fun Application.configureRouting() {
             adaptiveUiRoutes(getLayout, getProfile)
             telemetryRoutes(logEvent, startSession, endSession, getHeatmap)
             retentionRoutes(getNudges)
+            aiAssistantRoutes(sendMessage, getChatHistory)
         }
     }
 }

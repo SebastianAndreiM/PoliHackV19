@@ -20,6 +20,14 @@ function App() {
 
     const [bankPage, setBankPage] = useState<BankPage>("overview");
 
+    const [userId] = useState<string>(() => {
+        const stored = localStorage.getItem("ph_user_id");
+        if (stored) return stored;
+        const newId = crypto.randomUUID();
+        localStorage.setItem("ph_user_id", newId);
+        return newId;
+    });
+
     const [steps, setSteps] = useState<WalkthroughStep[]>([]);
     const [activeStep, setActiveStep] = useState(0);
 
@@ -99,6 +107,8 @@ function App() {
             <AnalyticsPreview />
 
             <AssistantWidget
+                userId={userId}
+                userType={selectedType}
                 onStartWalkthrough={startWalkthrough}
                 activeStep={steps[activeStep] ?? null}
             />

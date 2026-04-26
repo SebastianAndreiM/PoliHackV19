@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.assetguard.domain.service.NudgeEngineTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-04-26T08:45:26.074Z" hostname="DESKTOP-TMATNDQ" time="0.042">
+  <properties/>
+  <testcase name="evaluates ABANDON_RECOVERY nudge when transfer abandoned" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.015"/>
+  <testcase name="nudges have non-blank titles and messages" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.016"/>
+  <testcase name="ABANDON_RECOVERY deepLink is transfer" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="INACTIVITY nudge has priority 1 when inactive 7+ days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.002"/>
+  <testcase name="CASHBACK_PROXIMITY nudge has deepLink to cashback" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="evaluates CASHBACK_PROXIMITY nudge when close to threshold" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="evaluates INACTIVITY nudge when inactive 7 days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="STREAK_REWARD title changes for 7+ days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="evaluates INACTIVITY nudge with priority 2 when inactive 3 days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="evaluates SAVINGS_MILESTONE for STUDENT with enough sessions" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="no SAVINGS_MILESTONE for BUSINESS userType" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="INACTIVITY message differs per userType" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="no STREAK_REWARD when less than 3 consecutive days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="returns empty list for perfectly active user" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.001"/>
+  <testcase name="ABANDON_RECOVERY nudge has priority 1" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="evaluates STREAK_REWARD when 3 consecutive days" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="no ABANDON_RECOVERY nudge when no abandon events" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="no INACTIVITY nudge when active recently" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <testcase name="STREAK_REWARD has priority 3" classname="com.assetguard.domain.service.NudgeEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

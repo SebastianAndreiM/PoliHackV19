@@ -19,3 +19,9 @@ jwt:
   audience: "microgrid-mobile"
   realm: "microgrid"
   expiresInMs: 86400000
+
+ai:
+  anthropic:
+    apiKey: "AIzaSyBBsycH9ByP8rS7IAm4PQb1Bba7DgDdTDw"
+    model: "claude-sonnet-4-20250514"
+    timeoutMs: 30000

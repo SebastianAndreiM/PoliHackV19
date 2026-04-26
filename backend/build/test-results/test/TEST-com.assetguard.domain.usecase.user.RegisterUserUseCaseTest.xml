@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.assetguard.domain.usecase.user.RegisterUserUseCaseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-25T18:40:12.785Z" hostname="DESKTOP-TMATNDQ" time="0.026">
+<testsuite name="com.assetguard.domain.usecase.user.RegisterUserUseCaseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-25T19:42:44.533Z" hostname="DESKTOP-TMATNDQ" time="0.023">
   <properties/>
-  <testcase name="register new user returns saved profile" classname="com.assetguard.domain.usecase.user.RegisterUserUseCaseTest" time="0.018"/>
+  <testcase name="register new user returns saved profile" classname="com.assetguard.domain.usecase.user.RegisterUserUseCaseTest" time="0.016"/>
   <testcase name="register existing user returns existing profile without upsert" classname="com.assetguard.domain.usecase.user.RegisterUserUseCaseTest" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

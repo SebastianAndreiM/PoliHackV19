@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.assetguard.domain.usecase.ui.GetChatHistoryUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-25T19:42:44.426Z" hostname="DESKTOP-TMATNDQ" time="0.021">
+  <properties/>
+  <testcase name="get history with custom limit passes limit to repo" classname="com.assetguard.domain.usecase.ui.GetChatHistoryUseCaseTest" time="0.008"/>
+  <testcase name="get history returns empty list when no messages" classname="com.assetguard.domain.usecase.ui.GetChatHistoryUseCaseTest" time="0.006"/>
+  <testcase name="get history returns messages in order" classname="com.assetguard.domain.usecase.ui.GetChatHistoryUseCaseTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

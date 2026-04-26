@@ -29,45 +29,44 @@ export function WalkthroughOverlay({
     useEffect(() => {
         if (!step) return;
 
-        const element = document.getElementById(step.targetId);
+        const timeoutId = window.setTimeout(() => {
+            const element = document.getElementById(step.targetId);
 
-        if (!element) {
-            requestAnimationFrame(() => setRect(null));
-            return;
-        }
+            if (!element) {
+                setRect(null);
+                return;
+            }
 
-        element.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-            inline: "center",
-        });
-
-        function updateRect() {
-            const el = document.getElementById(step.targetId);
-            if (!el) return;
-
-            const bounds = el.getBoundingClientRect();
-
-            setRect({
-                top: bounds.top,
-                left: bounds.left,
-                width: bounds.width,
-                height: bounds.height,
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "center",
             });
-        }
 
-        const firstFrame = requestAnimationFrame(() => {
-            updateRect();
+            function updateRect() {
+                const el = document.getElementById(step.targetId);
+                if (!el) return;
+
+                const bounds = el.getBoundingClientRect();
+
+                setRect({
+                    top: bounds.top,
+                    left: bounds.left,
+                    width: bounds.width,
+                    height: bounds.height,
+                });
+            }
+
             requestAnimationFrame(updateRect);
-        });
 
-        window.addEventListener("resize", updateRect);
-        window.addEventListener("scroll", updateRect, true);
+            window.addEventListener("resize", updateRect);
+            window.addEventListener("scroll", updateRect, true);
+        }, 120);
 
         return () => {
-            cancelAnimationFrame(firstFrame);
-            window.removeEventListener("resize", updateRect);
-            window.removeEventListener("scroll", updateRect, true);
+            window.clearTimeout(timeoutId);
+            window.removeEventListener("resize", () => {});
+            window.removeEventListener("scroll", () => {}, true);
         };
     }, [step]);
 

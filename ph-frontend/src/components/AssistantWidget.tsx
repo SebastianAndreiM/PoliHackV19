@@ -10,10 +10,7 @@ type Props = {
     activeStep?: WalkthroughStep | null;
 };
 
-export function AssistantWidget({
-                                    onStartWalkthrough,
-                                    activeStep,
-                                }: Props) {
+export function AssistantWidget({ onStartWalkthrough, activeStep }: Props) {
     const [open, setOpen] = useState(true);
     const [input, setInput] = useState("");
     const [lastExplainedStepId, setLastExplainedStepId] = useState<string | null>(

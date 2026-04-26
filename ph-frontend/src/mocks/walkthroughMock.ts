@@ -3,6 +3,7 @@ import type { WalkthroughStep } from "../types/assistant";
 export const transferWalkthrough: WalkthroughStep[] = [
     {
         id: "transfer-1",
+        page: "payments",
         targetId: "nav-payments",
         title: "Go to payments",
         description: "This is where you start any transfer or payment.",
@@ -12,6 +13,7 @@ export const transferWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "transfer-2",
+        page: "payments",
         targetId: "transfer-card",
         title: "Start a transfer",
         description: "This form is used when you want to send money.",
@@ -21,6 +23,7 @@ export const transferWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "transfer-3",
+        page: "payments",
         targetId: "iban-input",
         title: "Add the IBAN",
         description: "Paste or type the receiver IBAN here.",
@@ -30,6 +33,7 @@ export const transferWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "transfer-4",
+        page: "payments",
         targetId: "amount-input",
         title: "Enter the amount",
         description: "Write how much money you want to send.",
@@ -39,6 +43,7 @@ export const transferWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "transfer-5",
+        page: "payments",
         targetId: "confirm-transfer",
         title: "Confirm safely",
         description: "Review the details before confirming the transfer.",
@@ -51,6 +56,7 @@ export const transferWalkthrough: WalkthroughStep[] = [
 export const cardsWalkthrough: WalkthroughStep[] = [
     {
         id: "cards-1",
+        page: "cards",
         targetId: "nav-cards",
         title: "Go to cards",
         description: "This is where you manage your bank cards.",
@@ -60,6 +66,7 @@ export const cardsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "cards-2",
+        page: "cards",
         targetId: "card-management-card",
         title: "Card management",
         description: "Here you can freeze your card or manage card settings.",
@@ -69,6 +76,7 @@ export const cardsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "cards-3",
+        page: "cards",
         targetId: "daily-limit-card",
         title: "Daily limit",
         description: "This shows the current daily spending limit.",
@@ -78,6 +86,7 @@ export const cardsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "cards-4",
+        page: "cards",
         targetId: "security-tips-card",
         title: "Security tips",
         description: "This area explains safe card usage.",
@@ -90,6 +99,7 @@ export const cardsWalkthrough: WalkthroughStep[] = [
 export const savingsWalkthrough: WalkthroughStep[] = [
     {
         id: "savings-1",
+        page: "savings",
         targetId: "nav-savings",
         title: "Go to savings",
         description: "This is where you manage goals and savings.",
@@ -99,6 +109,7 @@ export const savingsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "savings-2",
+        page: "savings",
         targetId: "saving-goals-card",
         title: "Saving goals",
         description: "Here you can create a new goal.",
@@ -108,6 +119,7 @@ export const savingsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "savings-3",
+        page: "savings",
         targetId: "vacation-fund-card",
         title: "Progress tracking",
         description: "This shows how close you are to your goal.",
@@ -117,6 +129,7 @@ export const savingsWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "savings-4",
+        page: "savings",
         targetId: "saving-ai-suggestion-card",
         title: "AI suggestion",
         description: "The assistant suggests a realistic saving action.",
@@ -129,6 +142,7 @@ export const savingsWalkthrough: WalkthroughStep[] = [
 export const supportWalkthrough: WalkthroughStep[] = [
     {
         id: "support-1",
+        page: "support",
         targetId: "nav-support",
         title: "Go to support",
         description: "This is where users ask for help.",
@@ -138,6 +152,7 @@ export const supportWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "support-2",
+        page: "support",
         targetId: "help-center-card",
         title: "Help center",
         description: "Ask the assistant or contact support.",
@@ -147,6 +162,7 @@ export const supportWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "support-3",
+        page: "support",
         targetId: "estimated-wait-card",
         title: "Estimated wait",
         description: "This shows how long human support might take.",
@@ -156,6 +172,7 @@ export const supportWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "support-4",
+        page: "support",
         targetId: "handoff-card",
         title: "Human handoff",
         description: "The AI summarizes the issue before escalation.",
@@ -168,6 +185,7 @@ export const supportWalkthrough: WalkthroughStep[] = [
 export const onboardingWalkthrough: WalkthroughStep[] = [
     {
         id: "onboarding-1",
+        page: "overview",
         targetId: "balance-card",
         title: "Your balance",
         description: "Here you always see how much money you currently have.",
@@ -177,6 +195,7 @@ export const onboardingWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "onboarding-2",
+        page: "overview",
         targetId: "nav-payments",
         title: "Payments",
         description: "Use this section for transfers, bills and recurring payments.",
@@ -186,6 +205,7 @@ export const onboardingWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "onboarding-3",
+        page: "overview",
         targetId: "nav-cards",
         title: "Cards",
         description: "Here you manage your cards, limits and security settings.",
@@ -195,6 +215,7 @@ export const onboardingWalkthrough: WalkthroughStep[] = [
     },
     {
         id: "onboarding-4",
+        page: "overview",
         targetId: "assistant-button",
         title: "AI assistant",
         description: "Whenever you are stuck, ask the assistant and it will guide you.",

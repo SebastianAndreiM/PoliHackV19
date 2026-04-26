@@ -13,10 +13,21 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun Application.configureDatabases() {
+    val rawDatabaseUrl = System.getenv("DATABASE_URL")
+    val resolvedJdbcUrl = when {
+        rawDatabaseUrl == null -> environment.config.property("database.url").getString()
+        rawDatabaseUrl.startsWith("jdbc:") -> rawDatabaseUrl
+        else -> "jdbc:$rawDatabaseUrl"
+    }
+
     val config = HikariConfig().apply {
-        jdbcUrl = environment.config.property("database.url").getString()
-        username = environment.config.property("database.user").getString()
-        password = environment.config.property("database.password").getString()
+        jdbcUrl = resolvedJdbcUrl
+        username = System.getenv("DATABASE_USER")
+            ?: System.getenv("PGUSER")
+            ?: environment.config.property("database.user").getString()
+        password = System.getenv("DATABASE_PASSWORD")
+            ?: System.getenv("PGPASSWORD")
+            ?: environment.config.property("database.password").getString()
         driverClassName = environment.config.property("database.driver").getString()
         maximumPoolSize = environment.config.property("database.maxPoolSize")
             .getString().toInt()

@@ -816,4 +816,42 @@ button {
     font-size: 1.05em;
     padding: 16px 18px;
   }
+  .mock-page-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 18px;
+  }
+
+  .mock-feature-card {
+    border: 1px solid #eee8ff;
+    border-radius: 24px;
+    background: #fbfaff;
+    padding: 24px;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .mock-feature-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  .mock-feature-card h2 {
+    font-size: 42px;
+    margin: 0;
+  }
+
+  .mock-feature-card h3 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  .mock-feature-card strong {
+    font-size: 36px;
+  }
+
+  .mock-feature-card p {
+    color: #665f73;
+    margin: 0;
+  }
 }
